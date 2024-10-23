@@ -61,9 +61,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     }
 }
 
-fun ButtonClick()
-{
-
+fun ButtonClick(): Boolean {
+    return true
 }
 
 @Preview(showBackground = true)
