@@ -6,12 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -21,8 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.example.scrollless.ui.theme.ScrollLessTheme
 
@@ -63,7 +59,7 @@ fun GUIBackground(name: String, modifier : Modifier = Modifier)
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    TextButton({ButtonClick()})
+    TextButton({buttonClick()})
     {
         Text(
             text = "Hello $name!",
@@ -72,7 +68,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     }
 }
 
-fun ButtonClick(): Boolean {
+fun buttonClick(): Boolean {
     return true
 }
 
