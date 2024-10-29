@@ -32,23 +32,26 @@ import com.example.scrollless.ui.theme.ScrollLessTheme
 
 class MainActivity : ComponentActivity()
 {
+    var curScreen : AppScreen? = null;
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
 
-        var curScreen : AppScreen? = null;
-
         //Let's create our loading screen.
         val loadingScreen = LoadingScreenGUI(this)
 
-        curScreen = loadingScreen;
-
-
         enableEdgeToEdge()
 
+        setScreen(loadingScreen)
+    }
+
+    fun setScreen(screen : AppScreen)
+    {
+        this.curScreen = screen;
         setContent {
             ScrollLessTheme {
-                loadingScreen.BuildScreen()
+                screen.BuildScreen()
             }
         }
     }
