@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity()
         this.curScreen = screen;
         setContent {
             ScrollLessTheme {
-                screen.BuildScreen()
+                curScreen!!.BuildScreen()
             }
         }
     }
