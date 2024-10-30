@@ -2,10 +2,12 @@ package com.example.scrollless.learning
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -13,7 +15,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -37,6 +42,80 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.scrollless.R
 import com.example.scrollless.ui.theme.ScrollLessTheme
+
+
+@Composable
+fun NoTopBarScaffold(content: @Composable () -> Unit) {
+    Scaffold(
+        topBar = {} // Empty lambda to hide the top bar
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            content()
+        }
+    }
+}
+
+@Composable
+fun NoTopBarScaffoldWithBottomBarAndFAB(content: @Composable () -> Unit) {
+    Scaffold(
+        topBar = {},
+        bottomBar = {
+            // Your bottom bar content here
+            Text(text = "Bottom Bar", modifier = Modifier.padding(16.dp))
+        },
+        floatingActionButton = {
+            TextButton(onClick = {  }, colors = ButtonDefaults.buttonColors(contentColor = Color.Yellow))
+            {
+                Text("Add Alarm")
+            }
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            content()
+        }
+    }
+
+@Composable
+fun NoTopBarScaffoldWithBottomBarAndFAB(content: @Composable () -> Unit) {
+    Scaffold(
+        topBar = {},
+        bottomBar = {
+            // Your bottom bar content here
+            Text(text = "Bottom Bar", modifier = Modifier.padding(16.dp))
+        },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                content = { Text("Action") },
+                onClick = { /* Handle FAB click */ }
+            )
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            val imageModifier = Modifier
+                .size(1000.dp)
+                .border(BorderStroke(1.dp, Color.Black))
+            Image (
+                painter = painterResource(R.drawable.background_01),
+                contentDescription = "Background Image",
+                contentScale = ContentScale.Fit,
+                modifier = imageModifier
+            )
+            content()
+        }
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -207,7 +286,7 @@ fun GUIBackgroundText(name: String, modifier : Modifier = Modifier)
 
 @Composable
 fun GreetingMessage(name: String, modifier: Modifier = Modifier) {
-    TextButton({ buttonClick() })
+    TextButton({  })
     {
         Text(
             text = "Hello $name!",
@@ -221,7 +300,6 @@ fun buttonClick(): Boolean {
     return true
 }
 
-@Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     ScrollLessTheme {
@@ -236,4 +314,4 @@ fun ScaffoldTextFields()
         GreetingMessage(name = "Android", modifier = Modifier.padding(1.dp))
         GreetingMessage(name = "Dustin", modifier = Modifier.padding(1.dp))
     }
-}
+}}

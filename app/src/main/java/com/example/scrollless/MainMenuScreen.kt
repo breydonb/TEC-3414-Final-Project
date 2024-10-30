@@ -17,6 +17,7 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -38,7 +39,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.scrollless.learning.ScaffoldExample
 
 // From Dustin: This syntax looks weird, but it's basically just syntactic Kotlin sugar.
 // Kotlin classes have one or more constructors (one primary,
@@ -65,66 +65,63 @@ class MainMenuScreen (app : MainActivity) : AppScreen
     @Composable
     override fun BuildScreen()
     {
-        BackgroundBox()
+
+        //BackgroundBox()
+        //NoTopBarScaffold(
+           // content = {  }
+        //)
+        NoTopBarScaffoldWithBottomBarAndFAB { Text("Hello World") }
+
         //BackgroundScaffold()
         //ScaffoldExample()
         //BackgroundBox()
     }
+}
 
-//    @OptIn(ExperimentalMaterial3Api::class)
-//    @Composable
-//    fun BackgroundScaffold()
-//    {
-//        var presses by remember { mutableIntStateOf(0) }
-//        Scaffold(
-//            topBar = {
-//                TopAppBar (
-//                    title = {
-//                        //Text("Top app bar")
-//                        TitleLogo()
-//                    },
-//                    colors = TopAppBarColors(
-//                        containerColor = Color.Transparent,
-//                        titleContentColor = Color.Black,
-//                        scrolledContainerColor = Color.Transparent,
-//                        navigationIconContentColor = Color.Transparent,
-//                        actionIconContentColor = Color.Transparent
-//                    )
-//                )
-//            },
-//            bottomBar = {
-//                BottomAppBar(
-//                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-//                    contentColor = MaterialTheme.colorScheme.primary,
-//                ) {
-//                    Text(
-//                        modifier = Modifier.fillMaxWidth(),
-//                        textAlign = TextAlign.Center,
-//                        text = "Bottom app bar",
-//                    )
-//                }
-//            },
-//            floatingActionButton = {
-//                FloatingActionButton(onClick = { presses++ }) {
-//                    Icon(Icons.Default.Add, contentDescription = "Add")
-//                }
-//            }
-//        )
-//        { innerPadding ->
-//            Column(
-//                modifier = Modifier.padding(innerPadding),
-//                verticalArrangement = Arrangement.spacedBy(16.dp),)
-//            {
-//                BackgroundBox()
-//            }
-//        }
-//    }
+//This composable was generated using Google Gemini to get an idea of
+//how this might be done, and what attributes I'd need to set to do it.
+@Composable
+fun NoTopBarScaffoldWithBottomBarAndFAB(content: @Composable () -> Unit) {
+    Scaffold(
+        topBar = {},
+        bottomBar = {
+            // Your bottom bar content here
+            Text(text = "Bottom Bar", modifier = Modifier.padding(16.dp))
+        },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                content = { Text("Add Alarm") },
+                onClick = { /* Handle FAB click */ }
+            )
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            val imageModifier = Modifier
+                .size(1000.dp)
+                .border(BorderStroke(1.dp, Color.Black))
+            Image (
+                painter = painterResource(R.drawable.background_01),
+                contentDescription = "Background Image",
+                contentScale = ContentScale.Fit,
+                modifier = imageModifier
+            )
+            content()
+        }
+    }
+}
+
 
     //The background box determines the dimensions of the image.
     @Composable
     fun BackgroundBox()
     {
-        Box(modifier = Modifier.offset(0.dp, 0.dp).fillMaxSize())
+        Box(modifier = Modifier
+            .offset(0.dp, 0.dp)
+            .fillMaxSize())
         {
             BackgroundImg()
             TitleLogoBox()
@@ -164,7 +161,9 @@ class MainMenuScreen (app : MainActivity) : AppScreen
     @Composable
     fun BackgroundImg()
     {
-        val imageModifier = Modifier.size(1000.dp).border(BorderStroke(1.dp, Color.Black))
+        val imageModifier = Modifier
+            .size(1000.dp)
+            .border(BorderStroke(1.dp, Color.Black))
         Image (
             painter = painterResource(R.drawable.background_01),
             contentDescription = "Background Image",
@@ -177,4 +176,3 @@ class MainMenuScreen (app : MainActivity) : AppScreen
     {
 
     }
-}
