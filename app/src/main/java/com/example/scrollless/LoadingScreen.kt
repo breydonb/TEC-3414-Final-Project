@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-class LoadingScreenGUI(app : MainActivity) : AppScreen
+class LoadingScreen(app : MainActivity) : AppScreen
 {
     private var app : MainActivity;
 
