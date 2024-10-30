@@ -17,6 +17,7 @@ class MainActivity : ComponentActivity()
         //Let's create our loading screen.
         val loadingScreen = LoadingScreen(this)
         val mainMenuScreen = MainMenuScreen(this)
+        val addAlarmScreen = AddAlarmScreen()
 
         enableEdgeToEdge()
         setScreen(mainMenuScreen)
