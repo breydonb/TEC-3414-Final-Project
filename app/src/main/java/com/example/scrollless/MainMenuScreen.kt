@@ -121,12 +121,12 @@ class MainMenuScreen (app : MainActivity) : AppScreen
             topBar = {},
             bottomBar = {
                 // Your bottom bar content here
-                Text(text = "Bottom Bar", modifier = Modifier.padding(10.dp))
+                //Text(text = "Bottom Bar", modifier = Modifier.padding(10.dp))
             },
             floatingActionButton = {
                 ExtendedFloatingActionButton(
                     content = { Text("Add Alarm") },
-                    onClick = { /* Handle FAB click */ }
+                    onClick = { addAlarm() }
                 )
             }
         ) { innerPadding ->
