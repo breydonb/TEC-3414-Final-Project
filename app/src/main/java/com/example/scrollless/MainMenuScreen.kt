@@ -58,7 +58,7 @@ class MainMenuScreen (app : MainActivity) : AppScreen
     private var numberAppsToShow : Int = 9;
     private var appSettingPanelScrollWidth : Int = appSettingPanelWidth;
     private var appSettingPanelScrollHeight : Int = appSettingPanelHeight * numberAppsToShow;
-
+//
     init {
         this.app = app;
         this.appCount = 20;
