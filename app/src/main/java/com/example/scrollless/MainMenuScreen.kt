@@ -10,10 +10,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -49,22 +53,28 @@ class MainMenuScreen (app : MainActivity) : AppScreen
     private var app: MainActivity;
     private var appCount : Int;
 
+    private var appSettingPanelWidth : Int = 250;
+    private var appSettingPanelHeight : Int = 58;
+    private var numberAppsToShow : Int = 9;
+    private var appSettingPanelScrollWidth : Int = appSettingPanelWidth;
+    private var appSettingPanelScrollHeight : Int = appSettingPanelHeight * numberAppsToShow;
+
     init {
         this.app = app;
-        this.appCount = 10;
+        this.appCount = 20;
     }
 
     @Composable
     override fun BuildScreen() {
         BackgroundScaffolding {
-            Box(modifier = Modifier.fillMaxSize())
+            LogoBox()
+            Box(modifier = Modifier.fillMaxSize().offset(0.dp, 80.dp))
             {
-                LogoBox()
-                Column(modifier = Modifier.align(Alignment.Center))
+                Column(modifier = Modifier.align(Alignment.Center).width(appSettingPanelScrollWidth.dp).height(appSettingPanelScrollHeight.dp).verticalScroll(rememberScrollState()))
                 {
                     for(i in 0..appCount)
                     {
-                        ColoredBackgroundTextBox("<App Name>", Color.Gray, Color.Black, 100, 60)
+                        ColoredBackgroundTextBox("Alarm $i", Color.LightGray, Color.Black, appSettingPanelWidth, appSettingPanelHeight)
                     }
                 }
             }
@@ -120,10 +130,10 @@ class MainMenuScreen (app : MainActivity) : AppScreen
                 )
             }
         ) { innerPadding ->
-            Box(modifier = Modifier.fillMaxSize().padding(innerPadding))
+            Box(modifier = Modifier.padding(innerPadding).fillMaxSize())
             {
                 val imageModifier = Modifier.fillMaxSize().border(BorderStroke(1.dp, Color.Black))
-                Image(painter = painterResource(R.drawable.background_01), contentDescription = "Background Image",
+                Image(painter = painterResource(R.drawable.background_02), contentDescription = "Background Image",
                     contentScale = ContentScale.Fit, modifier = imageModifier)
                 content()
             }
