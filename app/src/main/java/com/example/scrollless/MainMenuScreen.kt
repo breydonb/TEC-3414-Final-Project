@@ -199,7 +199,8 @@ class MainMenuScreen (app : MainActivity) : AppScreen
         )
     }
 
-    fun addAlarm() {
-
+    fun addAlarm()
+    {
+        //app.setScreen(app.loadingScreen)
     }
 }

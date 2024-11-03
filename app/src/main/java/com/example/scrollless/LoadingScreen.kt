@@ -1,5 +1,6 @@
 package com.example.scrollless
 
+import android.os.Handler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -17,6 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+
 class LoadingScreen(app : MainActivity) : AppScreen
 {
     private var app : MainActivity;
@@ -31,6 +33,15 @@ class LoadingScreen(app : MainActivity) : AppScreen
     override fun BuildScreen()
     {
         BackgroundBox()
+        val handler = Handler()
+        val delay = 5000 // 1000 milliseconds == 1 second
+
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                app.setScreen(app.mainMenuScreen) // Do your work here
+                handler.postDelayed(this, delay.toLong());
+            }
+        }, delay.toLong())
     }
 
     //The background box determines the dimensions of the image.
@@ -64,7 +75,8 @@ class LoadingScreen(app : MainActivity) : AppScreen
     @Composable
     fun BackgroundImg()
     {
-        val imageModifier = Modifier.size(1000.dp)
+        val imageModifier = Modifier
+            .size(1000.dp)
             .border(BorderStroke(1.dp, Color.Black))
         Image (
             painter = painterResource(R.drawable.background_01),
