@@ -74,7 +74,7 @@ class MainMenuScreen (app : MainActivity) : AppScreen
                 {
                     for(i in 0..appCount)
                     {
-                        ColoredBackgroundTextBox("Alarm $i", Color.LightGray, Color.Black, appSettingPanelWidth, appSettingPanelHeight)
+                        ColoredBackgroundTextBox(text = "Alarm $i", backgroundColor = Color.LightGray, innerBorderColor = Color.Black, boxWidth = appSettingPanelWidth, boxHeight = appSettingPanelHeight)
                     }
                 }
             }
