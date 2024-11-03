@@ -33,6 +33,8 @@ class LoadingScreen(app : MainActivity) : AppScreen
     override fun BuildScreen()
     {
         BackgroundBox()
+
+        //Source for the following bit of code: https://stackoverflow.com/a/11434143/4326020
         val handler = Handler()
         val delay = 5000 // 1000 milliseconds == 1 second
 
