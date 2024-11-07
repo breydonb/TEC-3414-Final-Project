@@ -1,3 +1,7 @@
+
+
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -9,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.scrollless"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -66,4 +70,22 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    implementation("com.android.tools:desugar_jdk_libs:2.0.4")
+    implementation("com.badlogicgames.gdx:gdx-backend-android:1.13.0")
+    //implementation(project(":core"))
+
+    // Natives with platform specific variants
+    val platforms = listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+    platforms.forEach { platform ->
+        implementation("com.badlogicgames.gdx:gdx-platform:1.13.0:natives-$platform")
+    }
+    // https://mvnrepository.com/artifact/com.badlogicgames.gdx/gdx
+    implementation("com.badlogicgames.gdx:gdx:1.13.0")
+    // https://mvnrepository.com/artifact/com.badlogicgames.gdx/gdx-platform
+    //testImplementation("com.badlogicgames.gdx:gdx-platform:1.13.0")
+    // https://mvnrepository.com/artifact/com.badlogicgames.gdx/gdx-backend-android
+    //implementation("com.badlogicgames.gdx:gdx-backend-android:1.13.0")
+
 }

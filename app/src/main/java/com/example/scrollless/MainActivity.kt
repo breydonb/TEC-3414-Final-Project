@@ -1,10 +1,23 @@
 package com.example.scrollless
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
+import com.badlogic.gdx.backends.android.AndroidApplication
+import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 import com.example.scrollless.ui.theme.ScrollLessTheme
+
+
+///** Launches the Android application.  */
+//class MainActivity : AndroidApplication() {
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        val configuration = AndroidApplicationConfiguration()
+//        configuration.useImmersiveMode = true // Recommended, but not required.
+//        initialize(MiniGame(), configuration)
+//    }
+//}
 
 //This is a link to our Figma:
 //      https://www.figma.com/design/igoFvUcyzVYHMlh3t3esIf/ScrollLess-POC?node-id=0-1&node-type=canvas&t=TGZkqnY6B7aDNQHY-0
@@ -32,9 +45,10 @@ class MainActivity : ComponentActivity()
         //Let's create our loading screen.
 
 
-        enableEdgeToEdge()
-        //setScreen(mainMenuScreen)
-        setScreen(loadingScreen)
+        //enableEdgeToEdge()
+        setScreen(mainMenuScreen)
+        //setScreen(loadingScreen)
+
     }
 
     fun setScreen(screen : AppScreen)

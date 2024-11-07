@@ -40,7 +40,7 @@ class LoadingScreen(app : MainActivity) : AppScreen
 
         handler.postDelayed(object : Runnable {
             override fun run() {
-                app.setScreen(app.mainMenuScreen) // Do your work here
+                //app.setScreen(app.mainMenuScreen) // Do your work here
                 handler.postDelayed(this, delay.toLong());
             }
         }, delay.toLong())
